@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ShopSmartPhoneConnection.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+   
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+
+
+
+
+<h2>Danh sách sản phẩm</h2>
+@Html.ActionLink("Thêm sản phẩm", "Create", null, new { @class = "btn btn-success" })
+<br /><br />
+
+@*Thể hiện dữ liệu thông qua control webGrid*@
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+    grid.Column("ID", "Mã sản phẩm"),
+    grid.Column("TenSanPham", "Tên Sản Phẩm"),
+    grid.Column("Gia", "Giá"),
+    grid.Column("HinhAnh", "Hình ảnh", format: p => @Html.Raw("<img width=\"150\" height=\"50\" src=\"../../Content/Image/" + p.HinhAnh + "\">")),
+    grid.Column(format: p => @Html.ActionLink("Chi tiết", "Details", new { id = p.ID })),
+    grid.Column(format: p => @Html.ActionLink("Chỉnh sửa", "Edit", new { id = p.ID })),
+    grid.Column(format: p => @Html.ActionLink("Xóa", "Delete", new { id = p.ID }))
+    ))
+
+<style>
+    .gridTable {
+        border: 2px solid #3646a4;
+    }
+
+    .gridRow {
+        background-color: aqua;
+    }
+</style>

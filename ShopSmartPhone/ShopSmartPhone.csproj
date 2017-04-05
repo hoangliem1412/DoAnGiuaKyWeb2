@@ -158,24 +158,123 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdmProductController.cs" />
+    <Compile Include="Areas\Admin\Models\ProductBus.cs" />
+    <Compile Include="Areas\Admin\ViewModels\DetailProduct.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Generated\Database.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PetaPoco.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\ContentAdmin\css\bootstrap.css" />
+    <Content Include="Areas\Admin\ContentAdmin\css\demo-page.css" />
+    <Content Include="Areas\Admin\ContentAdmin\css\examples.css" />
+    <Content Include="Areas\Admin\ContentAdmin\css\font-awesome.css" />
+    <Content Include="Areas\Admin\ContentAdmin\css\geochart.css" />
+    <Content Include="Areas\Admin\ContentAdmin\css\hover.css" />
+    <Content Include="Areas\Admin\ContentAdmin\css\magnific-popup.css" />
+    <Content Include="Areas\Admin\ContentAdmin\css\style.css" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\1.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\404.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\b3.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\climate.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\close.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\ftr-icons.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\icon.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\login.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\mess.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\next.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p1.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p2.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p3.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p4.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p5.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p6.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p7.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\p8.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\prev.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro1.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro10.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro12.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro2.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro3.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro4.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro5.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro6.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro7.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro8.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\pro9.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\reg.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\search.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\shoppy.jpg" />
+    <Content Include="Areas\Admin\ContentAdmin\images\tick.png" />
+    <Content Include="Areas\Admin\ContentAdmin\images\visit.png" />
+    <Content Include="Areas\Admin\ContentAdmin\js\bars.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\bootstrap.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\Chart.min.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\chartinator.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\gmaps.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\jquery-2.1.1.min.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\jquery.magnific-popup.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\jquery.nicescroll.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\modernizr.min.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\nivo-lightbox.min.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\scripts.js" />
+    <Content Include="Areas\Admin\ContentAdmin\js\skycons.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\asus-zenfone-3-max-zc553kl-400-400x400.png" />
+    <Content Include="Content\Image\dell-inspiron-3552-v5c008w-400-400x400.png" />
+    <Content Include="Content\Image\dell-inspiron-3567-i3-6006u-400-400x460.png" />
+    <Content Include="Content\Image\huawei-mediapad-t2-7-pro-400-400x460.png" />
+    <Content Include="Content\Image\iphone-6-plus-16gb-400x450.png" />
+    <Content Include="Content\Image\iphone-7-plus-128gb-2-400x460.png" />
+    <Content Include="Content\Image\oppo-a39-hero-1-1-400x460.png" />
+    <Content Include="Content\Image\oppo-f1s-2017-400x460.png" />
+    <Content Include="Content\Image\samsung-galaxy-a5-2017-400x460.png" />
+    <Content Include="Content\Image\samsung-galaxy-a7-2017-2-400x460.png" />
+    <Content Include="Content\Image\samsung-galaxy-j7-prime-1-400x460.png" />
+    <Content Include="Content\Image\samsung-galaxy-tab-e-96-sm-t561-400-400x400.png" />
+    <Content Include="Content\Image\sony-xperia-xa-new-hero-400x460.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Generated\Database.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Database.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Models\Generated\PetaPoco.Generator.ttinclude" />
+    <Content Include="Models\Generated\PetaPoco.Core.ttinclude" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\AdmProduct\Index.cshtml" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\ContentAdmin\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -202,10 +301,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_MainLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -214,6 +313,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
