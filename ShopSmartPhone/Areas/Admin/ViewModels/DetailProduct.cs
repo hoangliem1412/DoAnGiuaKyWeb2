@@ -9,28 +9,30 @@ namespace ShopSmartPhone.Areas.Admin.ViewModels
     {
         public int ID { get; set; }
 
-        public string TenSanPham { get; set; }
+        public string ProductName { get; set; }
 
-        public string HinhAnh { get; set; }
+        public string Image { get; set; }
 
-        public decimal? Gia { get; set; }
+        public decimal? Price { get; set; }
 
-        public int? LoaiSanPham { get; set; }
+        public int? CategogyID { get; set; }
 
-        public int? HangSanXuat { get; set; }
+        public int? ManufacturerID { get; set; }
 
-        public string Mota { get; set; }
+        public string Description { get; set; }
 
-        public string ThongSoKyThuat { get; set; }
+        public string Specifications { get; set; }
 
-        public string BaoHanh { get; set; }
+        public string Warranty { get; set; }
 
-        public string PhuKien { get; set; }
+        public string Accessories { get; set; }
 
-        public string DanhGia { get; set; }
+        public int Evaluate { get; set; }
 
-        public string TenLoai { get; set; }
+        public bool? Status { get; set; }
 
-        public string TenHang { get; set; }
+        public string CategogyName { get; set; }
+
+        public string ManuturerName { get; set; }
     }
 }

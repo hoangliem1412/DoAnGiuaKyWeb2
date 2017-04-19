@@ -14,35 +14,35 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-            var lstSanPham = ProductBus.DanhSach();
-            return View(lstSanPham);
+            var lstProduct = ProductBus.DanhSach();
+            return View(lstProduct);
         }
 
-        // GET: QuanLySanPham/Details/5
+        // GET: QuanLyProduct/Details/5
         public ActionResult Details(int id)
         {
-            DetailProduct sp = ProductBus.ChiTietSanPham(id);
+            DetailProduct sp = ProductBus.DetailProduct(id);
             return View(sp);
         }
 
-        // GET: QuanLySanPham/Create
+        // GET: QuanLyProduct/Create
         public ActionResult Create()
         {
-            ViewBag.LoaiSanPham = new SelectList(ProductBus.GetListLoaiSanPham(), "ID", "TenLoai");
-            ViewBag.HangSanXuat = new SelectList(ProductBus.GetListHangSanXuat(), "ID", "TenHang");
+            ViewBag.Categoy = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName");
+            ViewBag.Manufacturer = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName");
 
             return View();
         }
 
-        // POST: QuanLySanPham/Create
+        // POST: QuanLyProduct/Create
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create(SanPham sp, HttpPostedFileBase HinhAnh)
+        public ActionResult Create(Product sp, HttpPostedFileBase Image)
         {
             //Kiểm tra hình ảnh
-            if (HinhAnh.ContentLength > 0)
+            if (Image.ContentLength > 0)
             {
-                var fileName = Path.GetFileName(HinhAnh.FileName);
+                var fileName = Path.GetFileName(Image.FileName);
                 var path = Path.Combine(Server.MapPath("~/Image"), fileName);
                 if (System.IO.File.Exists(path))
                 {
@@ -51,8 +51,8 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
                 }
                 else
                 {
-                    HinhAnh.SaveAs(path);
-                    sp.HinhAnh = fileName;
+                    Image.SaveAs(path);
+                    sp.Image = fileName;
                 }
 
             }
@@ -62,7 +62,7 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
 
 
 
-        // GET: QuanLySanPham/Edit/5
+        // GET: QuanLyProduct/Edit/5
         public ActionResult Edit(int id)
         {
             //if (id == null)
@@ -70,36 +70,36 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             //    Response.StatusCode = 404;
             //    return null;
             //}
-            var sp = ProductBus.GetSanPham(id);
+            var sp = ProductBus.GetProduct(id);
             if (sp == null)
             {
                 HttpNotFound();
             }
-            ViewBag.LoaiSanPham = new SelectList(ProductBus.GetListLoaiSanPham(), "ID", "TenLoai", sp.LoaiSanPham);
-            ViewBag.HangSanXuat = new SelectList(ProductBus.GetListHangSanXuat(), "ID", "TenHang", sp.HangSanXuat);
+            ViewBag.Categoy = new SelectList(ProductBus.GetListCategogy(), "ID", "TenLoai", sp.CategogyID);
+            ViewBag.Manufacturer = new SelectList(ProductBus.GetListManufacturer(), "ID", "TenHang", sp.ManufacturerID);
             ViewBag.ThongBao = "";
             return View(sp);
         }
 
-        // POST: QuanLySanPham/Edit/5
+        // POST: QuanLyProduct/Edit/5
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Edit(int id, SanPham sp, HttpPostedFileBase HinhAnh)
+        public ActionResult Edit(int id, Product sp, HttpPostedFileBase Image)
         {
 
             // TODO: Add update logic here
-            if (HinhAnh != null)
+            if (Image != null)
             {
-                var fileName = Path.GetFileName(HinhAnh.FileName);
+                var fileName = Path.GetFileName(Image.FileName);
                 var path = Path.Combine(Server.MapPath("~/Image"), fileName);
                 if (System.IO.File.Exists(path))
                 {
-                    sp.HinhAnh = fileName;
+                    sp.Image = fileName;
                 }
                 else
                 {
-                    HinhAnh.SaveAs(path);
-                    sp.HinhAnh = fileName;
+                    Image.SaveAs(path);
+                    sp.Image = fileName;
                 }
 
             }
@@ -116,20 +116,20 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
 
         }
 
-        // GET: QuanLySanPham/Delete/5
+        // GET: QuanLyProduct/Delete/5
         public ActionResult Delete(int id)
         {
-            var sp = ProductBus.ChiTietSanPham(id);
+            var sp = ProductBus.DetailProduct(id);
             if (sp == null)
             {
                 HttpNotFound();
             }
-            ViewBag.LoaiSanPham = new SelectList(ProductBus.GetListLoaiSanPham(), "ID", "TenLoai", sp.LoaiSanPham);
-            ViewBag.HangSanXuat = new SelectList(ProductBus.GetListHangSanXuat(), "ID", "TenHang", sp.HangSanXuat);
+            ViewBag.Categoy = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName", sp.CategogyID);
+            ViewBag.Manufacturer = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName", sp);
             return View(sp);
         }
 
-        // POST: QuanLySanPham/Delete/5
+        // POST: QuanLyProduct/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
