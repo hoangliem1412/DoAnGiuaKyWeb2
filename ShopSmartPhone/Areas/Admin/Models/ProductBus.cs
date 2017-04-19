@@ -25,7 +25,7 @@ namespace ShopSmartPhone.Areas.Admin.Models
         public static DetailProduct DetailProduct(int id)
         {
             var db = new ShopSmartPhoneConnectionDB();
-            return db.SingleOrDefault<DetailProduct>("Select sp.*, l.TenLoai, h.TenHang from Product sp, Categogy l, Manufacturer h WHERE sp.Categogy = l.ID and sp.Manufacturer = h.ID and sp.ID = @0", id);
+            return db.SingleOrDefault<DetailProduct>("Select sp.*, l.CategogyName, h.ManufacturerName from Product sp, Categogy l, Manufacturer h WHERE sp.CategogyID = l.ID and sp.ManufacturerID = h.ID and sp.ID = @0", id);
         }
         public static IEnumerable<Categogy> GetListCategogy()
         {
@@ -75,14 +75,14 @@ namespace ShopSmartPhone.Areas.Admin.Models
         {
             using (var db = new ShopSmartPhoneConnectionDB())
             {
-                return db.Query<Product>("SELECT * FROM Product WHERE Categogy = @0 and Status = True", id);
+                return db.Query<Product>("SELECT * FROM Product WHERE CategogyID = @0 and Status = True", id);
             }
         }
         public static IEnumerable<Product> ListOfManufacturer(int id)
         {
             using (var db = new ShopSmartPhoneConnectionDB())
             {
-                return db.Query<Product>("SELECT * FROM Product WHERE Manufacturer = @0 and Status = True", id);
+                return db.Query<Product>("SELECT * FROM Product WHERE ManufacturerID = @0 and Status = True", id);
             }
         }
     }

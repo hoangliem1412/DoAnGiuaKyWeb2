@@ -28,8 +28,8 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
         // GET: QuanLyProduct/Create
         public ActionResult Create()
         {
-            ViewBag.Categoy = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName");
-            ViewBag.Manufacturer = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName");
+            ViewBag.CategogyID = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName");
+            ViewBag.ManufacturerID = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName");
 
             return View();
         }
@@ -40,10 +40,10 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
         public ActionResult Create(Product sp, HttpPostedFileBase Image)
         {
             //Kiểm tra hình ảnh
-            if (Image.ContentLength > 0)
+            if (Image != null)
             {
                 var fileName = Path.GetFileName(Image.FileName);
-                var path = Path.Combine(Server.MapPath("~/Image"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Image"), fileName);
                 if (System.IO.File.Exists(path))
                 {
                     ViewBag.ThongBao = "Hinh đã tồn tại";
@@ -75,8 +75,8 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             {
                 HttpNotFound();
             }
-            ViewBag.Categoy = new SelectList(ProductBus.GetListCategogy(), "ID", "TenLoai", sp.CategogyID);
-            ViewBag.Manufacturer = new SelectList(ProductBus.GetListManufacturer(), "ID", "TenHang", sp.ManufacturerID);
+            ViewBag.CategogyID = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName", sp.CategogyID);
+            ViewBag.ManufacturerID = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName", sp.ManufacturerID);
             ViewBag.ThongBao = "";
             return View(sp);
         }
@@ -124,8 +124,8 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             {
                 HttpNotFound();
             }
-            ViewBag.Categoy = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName", sp.CategogyID);
-            ViewBag.Manufacturer = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName", sp);
+            ViewBag.CategogyID = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName", sp.CategogyID);
+            ViewBag.ManufacturerID = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName", sp);
             return View(sp);
         }
 
