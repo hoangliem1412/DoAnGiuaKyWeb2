@@ -155,6 +155,28 @@ namespace ShopSmartPhoneConnection
 		[Column] public bool? Status { get; set; }
 	}
     
+	[TableName("dbo.Specifications")]
+	[PrimaryKey("ProductID", AutoIncrement=false)]
+	[ExplicitColumns]
+    public partial class Specification : ShopSmartPhoneConnectionDB.Record<Specification>  
+    {
+		[Column] public int ProductID { get; set; }
+		[Column] public string Screen { get; set; }
+		[Column] public string OS { get; set; }
+		[Column] public string PosteriorCamera { get; set; }
+		[Column] public string FrontCamera { get; set; }
+		[Column] public string CPU { get; set; }
+		[Column] public string RAM { get; set; }
+		[Column] public string ROM { get; set; }
+		[Column] public string MemoryCard { get; set; }
+		[Column] public string SIM { get; set; }
+		[Column] public string Pin { get; set; }
+		[Column] public string NetworkConnection { get; set; }
+		[Column] public string HardDisk { get; set; }
+		[Column] public string CardScreen { get; set; }
+		[Column] public string Size { get; set; }
+	}
+    
 	[TableName("dbo.sysdiagrams")]
 	[PrimaryKey("diagram_id")]
 	[ExplicitColumns]

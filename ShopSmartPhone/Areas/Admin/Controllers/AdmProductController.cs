@@ -33,7 +33,6 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
 
             return View();
         }
-
         // POST: QuanLyProduct/Create
         [ValidateInput(false)]
         [HttpPost]
@@ -56,11 +55,26 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
                 }
 
             }
+
             ProductBus.Insert(sp);
-            return RedirectToAction("Index");
+            
+            return RedirectToAction("CreateSpecification");
         }
 
+        public ActionResult CreateSpecification()
+        {
 
+            Specification temp = new Specification();
+            temp.ProductID = ProductBus.getIDProductNew();
+            return View(temp);
+        }
+
+        [HttpPost]
+        public ActionResult CreateSpecification(Specification spe)
+        {
+            ProductBus.InsertSpecification(spe);
+            return RedirectToAction("Index");
+        }
 
         // GET: QuanLyProduct/Edit/5
         public ActionResult Edit(int id)
@@ -111,11 +125,24 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
 
             ProductBus.Update(id, sp);
             return RedirectToAction("Index");
-
-
-
         }
 
+        public ActionResult EditSpecification(int id)
+        {
+            var spec = ProductBus.GetSpecification(id);
+            if (spec == null)
+            {
+                HttpNotFound();
+            }
+            return View(spec);
+        }
+
+        [HttpPost]
+        public ActionResult EditSpecification(int id, Specification spec)
+        {
+            ProductBus.UpdateSpecification(spec);
+            return RedirectToAction("index");
+        }
         // GET: QuanLyProduct/Delete/5
         public ActionResult Delete(int id)
         {

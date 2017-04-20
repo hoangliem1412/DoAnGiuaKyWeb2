@@ -12,31 +12,31 @@ namespace ShopSmartPhone.Areas.Admin.Models
         public static IEnumerable<Product> DanhSach()
         {
             var db = new ShopSmartPhoneConnectionDB();
-            return db.Query<Product>("Select * from Product");
+            return db.Query<Product>("Select * from Product WHERE Status = 1");
         }
         public static Product GetProduct(int id)
         {
             using (var db = new ShopSmartPhoneConnectionDB())
             {
-                return db.SingleOrDefault<Product>("SELECT * FROM Product WHERE ID=@0", id);
+                return db.SingleOrDefault<Product>("SELECT * FROM Product WHERE ID=@0 AND Status = 1", id);
             }
         }
 
         public static DetailProduct DetailProduct(int id)
         {
             var db = new ShopSmartPhoneConnectionDB();
-            return db.SingleOrDefault<DetailProduct>("Select sp.*, l.CategogyName, h.ManufacturerName from Product sp, Categogy l, Manufacturer h WHERE sp.CategogyID = l.ID and sp.ManufacturerID = h.ID and sp.ID = @0", id);
+            return db.SingleOrDefault<DetailProduct>("Select sp.*, l.CategogyName, h.ManufacturerName from Product sp, Categogy l, Manufacturer h WHERE sp.CategogyID = l.ID and sp.ManufacturerID = h.ID and sp.Status = 1 and sp.ID = @0", id);
         }
         public static IEnumerable<Categogy> GetListCategogy()
         {
             var db = new ShopSmartPhoneConnectionDB();
-            return db.Query<Categogy>("Select * FROM Categogy");
+            return db.Query<Categogy>("Select * FROM Categogy WHERE Status = 1");
         }
 
         public static IEnumerable<Manufacturer> GetListManufacturer()
         {
             var db = new ShopSmartPhoneConnectionDB();
-            return db.Query<Manufacturer>("SELECT * FROM Manufacturer");
+            return db.Query<Manufacturer>("SELECT * FROM Manufacturer WHERE Status = 1");
         }
 
         public static void Insert(Product sp)
@@ -67,9 +67,10 @@ namespace ShopSmartPhone.Areas.Admin.Models
         {
             using (var db = new ShopSmartPhoneConnectionDB())
             {
-                db.Delete<Product>("Where ID=@0", id);
+                db.Update<Product>("SET Status = 0 WHERE ID=@0", id);
             }
         }
+
 
         public static IEnumerable<Product> ListOfCategories(int id)
         {
@@ -83,6 +84,39 @@ namespace ShopSmartPhone.Areas.Admin.Models
             using (var db = new ShopSmartPhoneConnectionDB())
             {
                 return db.Query<Product>("SELECT * FROM Product WHERE ManufacturerID = @0 and Status = True", id);
+            }
+        }
+
+        public static void InsertSpecification(Specification spe)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                db.Insert(spe);
+            }
+        }
+
+        public static int getIDProductNew()
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                var query = db.Query<Product>("SELECT * FROM Product ORDER BY ID DESC");
+                return query.First().ID;
+            }
+        }
+
+        public static Specification GetSpecification(int id)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                return db.SingleOrDefault<Specification>("SELECT * FROM Specifications WHERE ProductID = @0", id);
+            }
+        }
+
+        public static void UpdateSpecification(Specification spec)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                db.Update(spec);
             }
         }
     }
