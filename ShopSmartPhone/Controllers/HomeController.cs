@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopSmartPhone.Models.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,8 @@ namespace ShopSmartPhone.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            
+            return View(ProductBus.getListProduct());
         }
 
         public ActionResult About()
