@@ -9,11 +9,16 @@ namespace ShopSmartPhone.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int page=1)
         {
-            
-            return View(ProductBus.getListProduct());
+            return View(ProductBus.getListProductPage(page, 8));
         }
+
+        public ActionResult MenuPartial()
+        {
+            return PartialView(CategogyBus.getListCategogy());
+        }
+
 
         public ActionResult About()
         {

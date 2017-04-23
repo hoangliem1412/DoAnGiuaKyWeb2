@@ -14,6 +14,7 @@ namespace ShopSmartPhone.Controllers
         {
             return View();
         }
+        
 
         public ActionResult Detail(int id)
         {

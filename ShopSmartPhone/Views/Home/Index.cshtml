@@ -1,9 +1,10 @@
-﻿@model IEnumerable<ShopSmartPhoneConnection.Product>
+﻿@using PetaPoco;
+@model Page<ShopSmartPhoneConnection.Product>
 @{
     ViewBag.Title = "Trang chu";
 }
 
-@foreach (var item in Model)
+@foreach (var item in Model.Items)
 {
     <div class="col-md-3 top_brand_left">
         <div class="hover14 column">
@@ -43,3 +44,9 @@
         </div>
     </div>
 }
+<ul class="pagination">
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        <li>@Html.ActionLink(i.ToString(), "Index", new { page = i })</li>
+    }
+</ul>

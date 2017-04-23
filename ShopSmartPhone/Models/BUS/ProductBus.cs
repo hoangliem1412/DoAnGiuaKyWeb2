@@ -1,4 +1,5 @@
-﻿using ShopSmartPhone.Models.ViewModels;
+﻿using PetaPoco;
+using ShopSmartPhone.Models.ViewModels;
 using ShopSmartPhoneConnection;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,12 @@ namespace ShopSmartPhone.Models.BUS
         {
             var db = new ShopSmartPhoneConnectionDB();
             return db.Query<Product>("Select * from Product");
+        }
+
+        public static Page<Product> getListProductPage(int pageNumber, int itemPerPage)
+        {
+            var db = new ShopSmartPhoneConnectionDB();
+            return db.Page<Product>(pageNumber, itemPerPage, "Select * from Product");
         }
 
         public static DetailProduct getDetailProduct(int id)
