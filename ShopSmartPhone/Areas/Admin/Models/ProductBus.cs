@@ -22,6 +22,13 @@ namespace ShopSmartPhone.Areas.Admin.Models
             }
         }
 
+        public static IEnumerable<MoreImage> getListImage(int id)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                return db.Query<MoreImage>("SELECT * FROM MoreImage WHERE Product_ID = @0", id);
+            }
+        }
         public static DetailProduct DetailProduct(int id)
         {
             var db = new ShopSmartPhoneConnectionDB();
@@ -44,6 +51,14 @@ namespace ShopSmartPhone.Areas.Admin.Models
             using (var db = new ShopSmartPhoneConnectionDB())
             {
                 db.Insert(sp);
+            }
+        }
+
+        public static void InsertImage(MoreImage mi)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                db.Insert(mi);
             }
         }
 

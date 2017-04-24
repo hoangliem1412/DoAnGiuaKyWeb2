@@ -36,12 +36,13 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
         // POST: QuanLyProduct/Create
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult Create(Product sp, HttpPostedFileBase Image)
+        public ActionResult Create(Product sp, HttpPostedFileBase[] Images)
         {
             //Kiểm tra hình ảnh
-            if (Image != null)
+            
+            if (Images[0] != null)
             {
-                var fileName = Path.GetFileName(Image.FileName);
+                var fileName = Path.GetFileName(Images[0].FileName);
                 var path = Path.Combine(Server.MapPath("~/Content/Image"), fileName);
                 if (System.IO.File.Exists(path))
                 {
@@ -50,14 +51,36 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
                 }
                 else
                 {
-                    Image.SaveAs(path);
+                    Images[0].SaveAs(path);
                     sp.Image = fileName;
                 }
 
             }
-
             ProductBus.Insert(sp);
-            
+            var id = ProductBus.getIDProductNew();
+            foreach (var Image in Images)
+            {
+                if (Image != null)
+                {
+                    var fileName = Path.GetFileName(Image.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/Image"), fileName);
+                    if (System.IO.File.Exists(path) && fileName != sp.Image)
+                    {
+                        ViewBag.ThongBao = "Hinh đã tồn tại";
+                        ViewBag.CategogyID = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName");
+                        ViewBag.ManufacturerID = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName");
+                        return View();
+                    }
+                    else
+                    {
+                        MoreImage mi = new MoreImage();
+                        Image.SaveAs(path);
+                        mi.ImageName = fileName;
+                        mi.Product_ID = id;
+                        ProductBus.InsertImage(mi);
+                    }
+                }
+            }
             return RedirectToAction("CreateSpecification");
         }
 
@@ -76,6 +99,7 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        
         // GET: QuanLyProduct/Edit/5
         public ActionResult Edit(int id)
         {
@@ -92,6 +116,7 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             ViewBag.CategogyID = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName", sp.CategogyID);
             ViewBag.ManufacturerID = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName", sp.ManufacturerID);
             ViewBag.ThongBao = "";
+            ViewBag.ListImage = ProductBus.getListImage(id);
             return View(sp);
         }
 

@@ -47,7 +47,7 @@
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })*@
-                <input name="Image" type="file" />
+                <input name="Images" type="file" multiple="multiple"/>
                 <span style="color:red">@ViewBag.ThongBao</span>
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
