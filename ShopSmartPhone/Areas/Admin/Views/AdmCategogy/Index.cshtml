@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ShopSmartPhoneConnection.Categogy>
+@{
+    ViewBag.Title = "Index";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHead",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+    grid.Column("ID", "Mã sản phẩm"),
+    grid.Column("CategogyName", "Tên sản phẩm"),
+    grid.Column(format: p => @Html.ActionLink(" Detail |", "Details", new { id = p.ID })),
+    grid.Column(format: p => @Html.ActionLink("| Edit |", "Edit", new { id = p.ID })),
+    grid.Column(format: p => @Html.ActionLink("| Delete", "Delete", new { id = p.ID }))
+    ))
+
+<style>
+    .gridTable {
+        border: 2px solid #3646a4;
+    }
+
+    .gridRow {
+        background-color: aqua;
+    }
+</style>

@@ -116,7 +116,7 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             ViewBag.CategogyID = new SelectList(ProductBus.GetListCategogy(), "ID", "CategogyName", sp.CategogyID);
             ViewBag.ManufacturerID = new SelectList(ProductBus.GetListManufacturer(), "ID", "ManufacturerName", sp.ManufacturerID);
             ViewBag.ThongBao = "";
-            ViewBag.ListImage = ProductBus.getListImage(id);
+            ViewBag.ListImage = ProductBus.getListImage(id).ToList();
             return View(sp);
         }
 
@@ -130,7 +130,7 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             if (Image != null)
             {
                 var fileName = Path.GetFileName(Image.FileName);
-                var path = Path.Combine(Server.MapPath("~/Image"), fileName);
+                var path = Path.Combine(Server.MapPath("~/Content/Image"), fileName);
                 if (System.IO.File.Exists(path))
                 {
                     sp.Image = fileName;
@@ -145,9 +145,35 @@ namespace ShopSmartPhone.Areas.Admin.Controllers
             else
             {
                 ProductBus.UpdateNoImage(id, sp);
-                return RedirectToAction("Index");
             }
 
+            var htf = HttpContext.Request.Files;
+            var lstImage = ProductBus.getListImage(id).ToList();
+            for (int i = 1; i < htf.Count; i++)
+            {
+                if(htf[i].ContentLength > 0)
+                {
+                    string fileName = "";
+                    if (Request.Browser.Browser == "IE")
+                    {
+                        fileName = Path.GetFileName(htf[i].FileName);
+                    }
+                    else
+                    {
+                        fileName = htf[i].FileName;
+                    }
+                    var path = Path.Combine(Server.MapPath("~/Content/Image"), fileName);
+                    if (System.IO.File.Exists(path))
+                    {
+                        ProductBus.UpdateImage(fileName, lstImage[i - 1].Image_ID);
+                    }
+                    else
+                    {
+                        htf[i].SaveAs(path);
+                        ProductBus.UpdateImage(fileName, lstImage[i - 1].Image_ID);
+                    }
+                }
+            }
             ProductBus.Update(id, sp);
             return RedirectToAction("Index");
         }

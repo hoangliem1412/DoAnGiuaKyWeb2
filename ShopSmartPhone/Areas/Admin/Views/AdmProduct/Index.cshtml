@@ -26,10 +26,10 @@
     grid.Column("ProductName", "Tên sản phẩm"),
     grid.Column("Price", "Giá"),
     grid.Column("Image", "Hình ảnh", format: p => @Html.Raw("<img width=\"150\" height=\"50\" src=\"../../Content/Image/" + p.Image + "\">")),
-    grid.Column(format: p => @Html.ActionLink("Detail", "Details", new { id = p.ID })),
-    grid.Column(format: p => @Html.ActionLink("Edit", "Edit", new { id = p.ID })),
-    grid.Column(format: p => @Html.ActionLink("Edit Specification", "EditSpecification", new { id= p.ID})),
-    grid.Column(format: p => @Html.ActionLink("Delete", "Delete", new { id = p.ID }))
+    grid.Column(format: p => @Html.ActionLink("Detail |", "Details", new { id = p.ID })),
+    grid.Column(format: p => @Html.ActionLink("| Edit |", "Edit", new { id = p.ID })),
+    grid.Column(format: p => @Html.ActionLink("| Edit Specification |", "EditSpecification", new { id= p.ID})),
+    grid.Column(format: p => @Html.ActionLink("| Delete", "Delete", new { id = p.ID }))
     ))
 
 <style>

@@ -70,6 +70,13 @@ namespace ShopSmartPhone.Areas.Admin.Models
             }
         }
 
+        public static void UpdateImage(String filename, int imageID)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                db.Update<MoreImage>("SET ImageName = @0 WHERE Image_ID = @1", filename, imageID);
+            }
+        }
         public static void UpdateNoImage(int id, Product sp)
         {
             using (var db = new ShopSmartPhoneConnectionDB())

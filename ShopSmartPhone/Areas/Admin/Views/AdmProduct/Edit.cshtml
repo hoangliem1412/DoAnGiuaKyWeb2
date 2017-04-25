@@ -22,7 +22,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Create", "AdmProduct", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "AdmProduct", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -50,15 +50,17 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-2" })
-            @foreach (var item in ViewBag.ListImage)
-            {
-                <div class="col-md-10">
-                    <input name="Images" type="file" multiple="multiple" />
-                    <img src="@Url.Content("~/Content/Image/"+item.ImageName)" width="250" height="100" />
-                </div>
-            }
+            <div class="row">
+                @foreach (var item in ViewBag.ListImage)
+                {
+                    <div class="col-md-3">
+                        <input name="Images" type="file" />
+                        <img src="@Url.Content("~/Content/Image/"+item.ImageName)" width="250" height="100" />
+                    </div>
+                }
+            </div>
         </div>
+                
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })

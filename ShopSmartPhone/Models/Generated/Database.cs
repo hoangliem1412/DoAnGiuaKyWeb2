@@ -133,6 +133,7 @@ namespace ShopSmartPhoneConnection
     public partial class MoreImage : ShopSmartPhoneConnectionDB.Record<MoreImage>  
     {
 		[Column] public int Product_ID { get; set; }
+		[Column] public int Image_ID { get; set; }
 		[Column] public string ImageName { get; set; }
 	}
     
