@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BUS\CategogyBus.cs" />
+    <Compile Include="Models\BUS\ManufacturerBus.cs" />
     <Compile Include="Models\BUS\ProductBus.cs" />
     <Compile Include="Models\Generated\Database.cs">
       <AutoGen>True</AutoGen>
@@ -549,6 +550,8 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Home\MenuPartial.cshtml" />
+    <Content Include="Views\Product\ProductToCate.cshtml" />
+    <Content Include="Views\Product\ProductToManu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,16 +6,14 @@ using System.Web;
 
 namespace ShopSmartPhone.Models.BUS
 {
-    public class CategogyBus
+    public class ManufacturerBus
     {
-        public static IEnumerable<Categogy> getListCategogy()
+        public static IEnumerable<Categogy> getListManufacturer()
         {
             using (var db = new ShopSmartPhoneConnectionDB())
             {
-                return db.Query<Categogy>("SELECT * FROM Categogy WHERE Status = 1");
+                return db.Query<Categogy>("SELECT * FROM Manufacturer WHERE Status = 1");
             }
         }
-
-        
     }
 }

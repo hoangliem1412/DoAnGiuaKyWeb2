@@ -14,7 +14,7 @@
         <ul class="nav navbar-nav nav_1">
             @foreach (var item in Model)
             {
-                <li><a href="#">@item.CategogyName</a></li>
+                <li><a href="@Url.Action("ProductToCate", "Product", new { id = item.ID })">@item.CategogyName</a></li>
             }
             
             @*<li><a href="~/Content/products.html">Branded Foods</a></li>

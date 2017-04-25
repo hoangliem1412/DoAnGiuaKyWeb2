@@ -29,5 +29,21 @@ namespace ShopSmartPhone.Models.BUS
                 return db.SingleOrDefault<DetailProduct>("Select sp.*, l.CategogyName, h.ManufacturerName from Product sp, Categogy l, Manufacturer h WHERE sp.CategogyID = l.ID and sp.ManufacturerID = h.ID and sp.Status = 1 and sp.ID = @0", id);
             }
         }
+
+        public static Page<Product> getListProductFollowCate(int pageNumber, int itemPerPage, int id)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                return db.Page<Product>(pageNumber, itemPerPage, "SELECT * FROM Product WHERE CategogyID = @0", id);
+            }
+        }
+
+        public static Page<Product> getListProductFollowManu(int pageNumber, int itemPerPage, int id)
+        {
+            using (var db = new ShopSmartPhoneConnectionDB())
+            {
+                return db.Page<Product>(pageNumber, itemPerPage, "SELECT * FROM Product WHERE ManufacturerID = @0", id);
+            }
+        }
     }
 }

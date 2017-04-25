@@ -16,6 +16,7 @@ namespace ShopSmartPhone.Controllers
 
         public ActionResult MenuPartial()
         {
+            ViewBag.ListManu = ManufacturerBus.getListManufacturer();
             return PartialView(CategogyBus.getListCategogy());
         }
 

@@ -20,5 +20,15 @@ namespace ShopSmartPhone.Controllers
         {
             return View(ProductBus.getDetailProduct(id));
         }
+
+        public ActionResult ProductToCate(int id, int page = 1)
+        {
+            return View(ProductBus.getListProductFollowCate(page, 8, id));
+        }
+
+        public ActionResult ProductToManu(int id, int page = 1)
+        {
+            return View(ProductBus.getListProductFollowManu(page, 8, id));
+        }
     }
 }
