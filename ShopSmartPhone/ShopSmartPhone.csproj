@@ -160,8 +160,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdmCategogyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdmManufacturerController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdmProductController.cs" />
     <Compile Include="Areas\Admin\Models\CategogyBus.cs" />
+    <Compile Include="Areas\Admin\Models\ManufacturerBus.cs" />
     <Compile Include="Areas\Admin\Models\ProductBus.cs" />
     <Compile Include="Areas\Admin\ViewModels\DetailProduct.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -517,6 +519,7 @@
     <Content Include="Areas\Admin\Views\AdmProduct\CreateSpecification.cshtml" />
     <Content Include="Areas\Admin\Views\AdmProduct\EditSpecification.cshtml" />
     <Content Include="Areas\Admin\Views\AdmCategogy\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdmManufacturer\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -549,6 +552,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Logo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
